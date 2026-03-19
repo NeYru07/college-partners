@@ -141,7 +141,7 @@ export const employers = [
     id: "School2",
     name: 'Школа №2',
     description: "«Школа №2 имени Героя Социалистического Труда И. В. Комзина» в Тольятти — одна из старейших муниципальных школ города, с акцентом на духовно-нравственное воспитание и поддержание здоровья учащихся.",
-    heroImage: "/images/School2.png",
+    heroImage: "/images/school2.png",
     badgeColor: "bg-[#F4FF79]",
     iconImage: "/images/school2Logo.png",
 
