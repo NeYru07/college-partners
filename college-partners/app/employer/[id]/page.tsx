@@ -90,7 +90,7 @@ export default async function EmployerPage({ params }: { params: Promise<{ id: s
             if (item.Img) {
               return (
                 // row-span-2 заставит картинку вытянуться на две строки вниз (как в макете)
-                <div key={item.id} className="relative col-span-1 row-span-2 rounded-[35px] overflow-hidden w-[27.125rem] h-[19.625rem]">
+                <div key={item.id} className="relative col-span-1 row-span-2 rounded-[2.1875rem] overflow-hidden w-[27.125rem] h-[19.625rem]">
                   <Image 
                     src={item.Img} 
                     alt="Приходи к нам" 
@@ -127,13 +127,13 @@ export default async function EmployerPage({ params }: { params: Promise<{ id: s
       <section className='flex flex-col items-center gap-14.5'>
           <h1 className='font-semibold text-8xl text-center text-[#262729]'>Ценности и миссия</h1>
           <div className='w-fit h-fit flex gap-4.75'>
-            <div className='w-[873px] h-[316px] rounded-[40px] py-6.75 px-6.25 bg-[#EAEAEA] flex flex-col gap-8'>
-              <h3 className='font-bold text-[40px] text-[#262729]'>Ценности</h3>
-              <p className='font-medium text-[37px] text-[#262729]'>{employer.values}</p>
+            <div className='w-[54.5625rem] h-[19.75rem] rounded-[2.5rem] py-6.75 px-6.25 bg-[#EAEAEA] flex flex-col gap-8'>
+              <h3 className='font-bold text-[2.5rem] text-[#262729]'>Ценности</h3>
+              <p className='font-medium text-[2.3125rem] text-[#262729]'>{employer.values}</p>
             </div>
-            <div className='w-[873px] h-[316px] rounded-[40px] py-6.75 px-6.25 bg-[#EAEAEA] flex flex-col gap-8'>
-              <h3 className='font-bold text-[40px] text-[#262729]'>Миссия</h3>
-              <p className='font-medium text-[37px] text-[#262729]'>{employer.mission}</p>
+            <div className='w-[54.5625rem] h-[19.75rem] rounded-[2.5rem] py-6.75 px-6.25 bg-[#EAEAEA] flex flex-col gap-8'>
+              <h3 className='font-bold text-[2.5rem] text-[#262729]'>Миссия</h3>
+              <p className='font-medium text-[2.3125rem] text-[#262729]'>{employer.mission}</p>
             </div>
           </div>
       </section>

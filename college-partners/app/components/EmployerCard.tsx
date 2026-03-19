@@ -48,7 +48,15 @@ export default function EmployerCard({
       </div>
 
       {/* 3. 3D Иконка (справа внизу) */}
-        <Image src={iconSrc} alt={name} width={350} height={450} className="w-auto h-[20rem] object-fill h-auto absolute right-0 -bottom-4" />
+        <div className="absolute bottom-0 right-0 w-[45%] max-w-[15.625rem] h-[18.75rem] p-2">
+        <Image 
+          src={iconSrc} 
+          alt={name} 
+          fill 
+          className="object-contain object-bottom object-right"
+        />
+        </div>
+        
     </Link>
   );
 }
