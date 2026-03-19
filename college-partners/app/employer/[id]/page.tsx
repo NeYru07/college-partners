@@ -1,0 +1,143 @@
+// src/app/employer/[id]/page.tsx
+import { employers } from '../../src/data/employers';
+import Image from 'next/image';
+import { notFound } from 'next/navigation';
+
+export default async function EmployerPage({ params }: { params: Promise<{ id: string }> }) {
+  
+  //"Распаковываем" параметры перед использованием
+  const resolvedParams = await params;
+  const currentId = resolvedParams.id; 
+  
+  console.log("Теперь ID точно есть:", currentId);
+
+  //Ищем по распакованному ID
+  const employer = employers.find((emp) => emp.id === currentId);
+
+  if (!employer) {
+    return notFound();
+  }
+
+  return (
+    <main className="mx-auto py-17.5 pl-25 pr-12.5">
+      
+      {/* 1. ВЕРХНИЙ БЛОК (Hero) */}
+      <section id='main' className="flex justify-between gap-7 mb-37">
+        <div className="w-1/2 flex flex-col">
+          <h1 className={`text-5xl font-semibold px-5 py-2.5 rounded-[1.875rem] w-fit ${employer.badgeColor}`}>
+            {employer.name}
+          </h1>
+          <p className="mt-10 text-[2rem] font-bold">{employer.description}</p>
+          <button className='w-full h-fit rounded-[3.75rem] flex justify-between py-5 px-13.75 bg-[#272727] items-center mt-auto'>
+            <h4 className='font-bold text-[2rem] text-white '>Наши соц.сети</h4>
+            <svg className='w-[9.625rem] h-[3.75rem]' width="154" height="60" viewBox="0 0 154 60" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M30 0C13.4313 0 0 13.4313 0 30C0 46.5688 13.4313 60 30 60C46.5688 60 60 46.5688 60 30C60 13.4313 46.5688 0 30 0ZM41.5375 33.8469C41.5375 33.8469 44.1906 36.4656 44.8438 37.6813C44.8625 37.7063 44.8719 37.7313 44.8781 37.7438C45.1437 38.1906 45.2063 38.5375 45.075 38.7969C44.8563 39.2281 44.1063 39.4406 43.85 39.4594H39.1625C38.8375 39.4594 38.1563 39.375 37.3313 38.8063C36.6969 38.3625 36.0719 37.6344 35.4625 36.925C34.5531 35.8688 33.7656 34.9563 32.9719 34.9563C32.8711 34.9561 32.7709 34.9719 32.675 35.0031C32.075 35.1969 31.3063 36.0531 31.3063 38.3344C31.3063 39.0469 30.7438 39.4563 30.3469 39.4563H28.2C27.4688 39.4563 23.6594 39.2 20.2844 35.6406C16.1531 31.2813 12.4344 22.5375 12.4031 22.4562C12.1688 21.8906 12.6531 21.5875 13.1813 21.5875H17.9156C18.5469 21.5875 18.7531 21.9719 18.8969 22.3125C19.0656 22.7094 19.6844 24.2875 20.7 26.0625C22.3469 28.9563 23.3563 30.1313 24.1656 30.1313C24.3174 30.1295 24.4665 30.0909 24.6 30.0188C25.6563 29.4313 25.4594 25.6656 25.4125 24.8844C25.4125 24.7375 25.4094 23.2 24.8688 22.4625C24.4813 21.9281 23.8219 21.725 23.4219 21.65C23.5838 21.4266 23.7971 21.2455 24.0438 21.1219C24.7687 20.7594 26.075 20.7062 27.3719 20.7062H28.0938C29.5 20.725 29.8625 20.8156 30.3719 20.9438C31.4031 21.1906 31.425 21.8563 31.3344 24.1344C31.3063 24.7812 31.2781 25.5125 31.2781 26.375C31.2781 26.5625 31.2688 26.7625 31.2688 26.975C31.2375 28.1344 31.2 29.45 32.0188 29.9906C32.1255 30.0576 32.249 30.0933 32.375 30.0938C32.6594 30.0938 33.5156 30.0938 35.8344 26.1156C36.5495 24.8352 37.1709 23.5046 37.6938 22.1344C37.7406 22.0531 37.8781 21.8031 38.0406 21.7063C38.1605 21.6451 38.2935 21.614 38.4281 21.6156H43.9938C44.6 21.6156 45.0156 21.7062 45.0938 21.9406C45.2313 22.3125 45.0688 23.4469 42.5281 26.8875L41.3938 28.3844C39.0906 31.4031 39.0906 31.5563 41.5375 33.8469Z" fill="white"/>
+            <circle cx="78" cy="20" r="5" fill="white"/>
+            <path d="M78 0.5C61.7076 0.500001 48.5 13.7082 48.5 30C48.5 46.2918 61.7076 59.5 78 59.5C94.2924 59.5 107.5 46.2918 107.5 30C107.5 13.7082 94.2924 0.5 78 0.5ZM86.4727 30.0127C87.2016 29.6689 87.9494 29.5629 88.6406 29.7188C89.3355 29.8755 89.9346 30.2892 90.3711 30.9141C90.8524 31.6035 91.0946 32.3301 91.0244 33.0645C90.9541 33.799 90.5782 34.4665 89.9688 35.0518V35.0527C89.6622 35.3485 89.3107 35.6066 89.0176 35.8359V35.8369C86.6802 37.6645 84.0017 38.5049 81.1006 38.9062C83.421 41.2339 85.7392 43.5633 88.0654 45.8848C88.6057 46.4223 89.0486 47.082 89.0928 47.9688V47.9697C89.1534 49.2484 88.3683 50.4795 87.1719 51.0586V51.0596C86.6046 51.3353 86.0067 51.4395 85.415 51.3379C84.8239 51.2364 84.2757 50.936 83.7959 50.4629C81.9295 48.6223 80.0715 46.7698 78.2432 44.8867C78.1343 44.7748 78.0593 44.7077 78.0029 44.668C77.9912 44.6597 77.9811 44.6538 77.9736 44.6494L77.9717 44.6504C77.9498 44.6629 77.9202 44.6836 77.8818 44.7158L77.7383 44.8525C76.8483 45.7843 75.9385 46.7014 75.0254 47.6123L72.293 50.3369C71.7707 50.8632 71.1301 51.288 70.2822 51.3467C69.0576 51.4309 67.8528 50.7118 67.2383 49.6182L67.124 49.3945C66.5821 48.237 66.8021 46.9897 67.7588 46.0215C70.1159 43.6372 72.4949 41.268 74.8574 38.8936C73.3845 38.6795 71.9005 38.3678 70.5156 37.8311C68.7318 37.1395 67.113 36.1421 65.7637 34.7568C65.2647 34.2441 64.9932 33.642 64.9658 32.9883C64.9422 32.4243 65.1006 31.8572 65.3945 31.3105L65.5293 31.0781C66.1997 29.984 67.3544 29.4801 68.5859 29.7021L68.834 29.7559C69.4871 29.9231 70.0373 30.2487 70.5254 30.6191C75.0257 33.6431 81.1964 33.5612 85.6855 30.4766C85.9248 30.3119 86.1883 30.1463 86.4736 30.0127H86.4727ZM77.9561 8.62305C84.0638 8.60654 89.0242 13.5427 89.0586 19.6631C89.0946 25.7223 84.1364 30.7363 78.085 30.7568C71.9805 30.7773 66.984 25.8814 66.9531 19.8291C66.9217 13.6499 71.8308 8.63978 77.9561 8.62305Z" fill="white" stroke="#272727"/>
+            <rect x="94.5" y="0.5" width="59" height="59" rx="29.5" fill="white"/>
+            <rect x="94.5" y="0.5" width="59" height="59" rx="29.5" stroke="#272727"/>
+            <path d="M129.138 17.8047H105.324V43.4342H111.952V35.0961H124.653L130.448 43.4342H137.87L131.48 35.0577C133.464 34.7504 134.893 34.0202 135.766 32.8675C136.639 31.7148 137.076 29.8703 137.076 27.4111V25.4898C137.076 24.0296 136.917 22.8769 136.64 21.9932C136.362 21.1094 135.885 20.3408 135.211 19.6492C134.496 18.996 133.703 18.5349 132.75 18.2276C131.797 17.9587 130.606 17.8047 129.138 17.8047ZM128.067 29.4478H111.952V23.4532H128.067C128.979 23.4532 129.614 23.6067 129.932 23.8759C130.249 24.1448 130.448 24.6442 130.448 25.3745V27.5263C130.448 28.2947 130.249 28.7941 129.932 29.0631C129.614 29.332 128.979 29.4478 128.067 29.4478Z" stroke="#272727" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+            <path d="M137.316 14.8598C138.439 14.8598 139.349 13.858 139.349 12.6223C139.349 11.3865 138.439 10.3848 137.316 10.3848C136.192 10.3848 135.281 11.3865 135.281 12.6223C135.281 13.858 136.192 14.8598 137.316 14.8598Z" fill="#272727"/>
+            </svg>
+          </button>
+        </div>
+        
+        <div className="w-1/2">
+          <Image 
+            src={employer.heroImage} 
+            alt={employer.name} 
+            width={795} 
+            height={530} 
+            className="rounded-[2.625rem] object-cover"
+          />
+        </div>
+      </section>
+
+      {/* 2. БЛОК ВАКАНСИЙ (Бенто-сетка) */}
+      <section id='aboutUs' className="mb-30.5 flex flex-col gap-11.5">
+        <h2 className={`font-semibold text-8xl ${employer.vacanciesInfoColor} w-fit`}>Вакансии</h2>
+        
+        <div className='flex gap-8.5 w-fit h-fit'>
+          <div className='relative bg-[#EBF2FA] rounded-[2.1875rem] w-[52.4375rem] h-[40rem]'>
+            <h2 className='font-semibold text-[4rem] text-[#272727] w-[26.75rem] ml-9.5 mt-6.75'>{employer.vacanciesInfo}</h2>
+              <Image
+                src="/images/grayStar.png"
+                alt="gray star"
+                width={400}
+                height={569}
+                className='w-[25rem] h-auto absolute top-[.75rem] left-[.75rem]'
+              />
+              <Image
+                src="/images/grayMiniStar.png"
+                alt="gray mini star"
+                width={256}
+                height={360}
+                className='w-[16rem] h-auto absolute bottom-[.25rem] right-[1rem]'
+              />
+              <Image
+                src={employer.vacanciesImage}
+                alt="Vacancies Image"
+                width={432}
+                height={500}
+                className='object-cover w-[27rem] h-auto absolute bottom-0 left-[13rem]'
+              />
+          </div>
+          <div className='grid grid-cols-2 grid-rows-2 gap-5.75'>
+            {employer.vacancies.map((item) => {
+    
+            // 1. УСЛОВИЕ ДЛЯ КАРТИНКИ
+            // Если у объекта есть свойство Img, возвращаем этот кусок HTML
+            if (item.Img) {
+              return (
+                // row-span-2 заставит картинку вытянуться на две строки вниз (как в макете)
+                <div key={item.id} className="relative col-span-1 row-span-2 rounded-[35px] overflow-hidden w-[27.125rem] h-[19.625rem]">
+                  <Image 
+                    src={item.Img} 
+                    alt="Приходи к нам" 
+                    fill 
+                    className="object-cover" 
+                  />
+                </div>
+              );
+            }
+
+            // 2. УСЛОВИЕ ДЛЯ ТЕКСТА
+            // Если код дошел сюда, значит Img нет
+            return (
+              <div 
+                key={item.id} 
+                // Подставляем цвет фона из базы
+                className={`${item.bgColor} px-3.25 py-6.5 rounded-[2.1875rem] flex flex-col justify-between w-[27.125rem] h-[19.625rem] cursor-pointer hover:scale-101 hover:shadow-xl duration-150 ease-in`}
+              >
+                {/* Крупная цифра (id) */}
+                <span className="text-8xl font-semiboldbold text-[#272727]">{item.id}</span>
+                
+                {/* Название специальности */}
+                <h3 className="text-5xl font-semibold text-black">
+                  {item.title}
+                </h3>
+              </div>
+            );
+          })}
+          </div>
+        </div>
+      </section>
+
+      {/* 3. ЦЕННОСТИ И МИССИЯ */}
+      <section className='flex flex-col items-center gap-14.5'>
+          <h1 className='font-semibold text-8xl text-center text-[#262729]'>Ценности и миссия</h1>
+          <div className='w-fit h-fit flex gap-4.75'>
+            <div className='w-[873px] h-[316px] rounded-[40px] py-6.75 px-6.25 bg-[#EAEAEA] flex flex-col gap-8'>
+              <h3 className='font-bold text-[40px] text-[#262729]'>Ценности</h3>
+              <p className='font-medium text-[37px] text-[#262729]'>{employer.values}</p>
+            </div>
+            <div className='w-[873px] h-[316px] rounded-[40px] py-6.75 px-6.25 bg-[#EAEAEA] flex flex-col gap-8'>
+              <h3 className='font-bold text-[40px] text-[#262729]'>Миссия</h3>
+              <p className='font-medium text-[37px] text-[#262729]'>{employer.mission}</p>
+            </div>
+          </div>
+      </section>
+
+    </main>
+  );
+}

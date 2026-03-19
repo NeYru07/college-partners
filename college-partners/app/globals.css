@@ -1,0 +1,75 @@
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&family=Russo+One&display=swap");
+@import "tailwindcss";
+
+html {
+  font-size: 0.833vw;
+  scroll-behavior: smooth;
+  overflow-x: hidden;
+}
+
+body {
+  font-family: "Montserrat", "Russo One", sans-serif;
+}
+
+a {
+  font-weight: 500;
+  font-size: 2rem;
+  text-decoration: none;
+  transition: 150ms ease-in;
+}
+
+a:hover {
+  color: #525252;
+  transform: scale(105%);
+}
+
+a:active {
+  transition-duration: 75ms;
+  transform: scale(1);
+}
+
+button {
+  cursor: pointer;
+}
+
+button:active {
+  transition-duration: 100ms;
+  transform: scale(99%);
+  box-shadow: 0 0 1rem #00000033;
+}
+
+.perspective-card {
+  width: 23.3125rem;
+  height: 25.8125rem;
+  border-radius: 3.75rem;
+  padding: 3.75rem 3.125rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1.875rem;
+  background-color: #fff;
+  box-shadow: 0.25rem 0.25rem 0.75rem #00000040;
+  align-items: center;
+  transition: 200ms ease-in-out;
+}
+
+.perspective-card p {
+  font-weight: 600;
+  font-size: 1.5rem;
+  text-align: center;
+}
+
+.perspective-card:hover {
+  transform: scale(105%);
+  box-shadow: 0 0 1.5rem #00000040;
+  cursor: pointer;
+}
+
+footer a {
+  font-size: 1.625rem;
+}
+
+.User p {
+  font-weight: 500;
+  font-size: 1.25rem;
+  cursor: pointer;
+}
