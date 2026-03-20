@@ -1,4 +1,3 @@
-// src/data/employers.ts
 export const employers = [
   {
     // Школа №55
